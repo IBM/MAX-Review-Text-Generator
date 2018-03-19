@@ -37,7 +37,7 @@ The model is based on the [IBM Code Pattern: Training a Deep Learning Language M
 
 ## 1. Build the Model
 
-Clone the `MAX-generative-language-model` repository locally. In a terminal, run the following command:
+Clone this repository locally. In a terminal, run the following command:
 
 ```
 $ git clone https://github.com/IBM/MAX-Review-Text-Generator.git
@@ -46,7 +46,7 @@ $ git clone https://github.com/IBM/MAX-Review-Text-Generator.git
 Change directory into the repository base folder:
 
 ```
-$ cd MAX-generative-language-model
+$ cd MAX-Review-Text-Generator
 ```
 
 To build the docker image locally, run: 
