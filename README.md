@@ -40,7 +40,7 @@ The model is based on the [IBM Code Pattern: Training a Deep Learning Language M
 Clone the `MAX-generative-language-model` repository locally. In a terminal, run the following command:
 
 ```
-$ git clone https://github.ibm.com/IBMCode/MAX-generative-language-model
+$ git clone https://github.com/IBM/MAX-Review-Text-Generator.git
 ```
 
 Change directory into the repository base folder:
