@@ -52,7 +52,7 @@ $ cd MAX-Review-Text-Generator
 To build the docker image locally, run: 
 
 ```
-$ docker build -t max-keras-langmodel .
+$ docker build -t max-review-text-generator .
 ```
 
 All required model assets will be downloaded during the build process. _Note_ that currently this docker image is CPU only (we will add support for GPU images later).
@@ -63,7 +63,7 @@ All required model assets will be downloaded during the build process. _Note_ th
 To run the docker image, which automatically starts the model serving API, run:
 
 ```
-$ docker run -it -p 5000:5000 max-keras-langmodel
+$ docker run -it -p 5000:5000 max-review-text-generator
 ```
 
 ## 3. Use the Model
@@ -99,3 +99,6 @@ You should see a JSON response that looks something like that below. *Note, howe
 
 To run the Flask API app in debug mode, edit `config.py` to set `DEBUG = True` under the application settings. You will then need to rebuild the docker image (see [step 1](#1-build-the-model)).
 
+## 5. Cleanup
+
+To stop the Docker container, type `CTRL` + `C` in your terminal.
