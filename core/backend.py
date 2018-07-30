@@ -1,5 +1,6 @@
 from keras.backend import clear_session
 from keras import models
+import tensorflow as tf
 import numpy as np
 import json
 import logging
@@ -19,10 +20,11 @@ class ModelWrapper(object):
         logger.info('Loading model from: {}...'.format(path))
         model_path = '{}/{}'.format(path, model_file)
         clear_session()
-        self.model = models.load_model(model_path)
-        # this seems to be required to make Keras models play nicely with threads
-        self.model._make_predict_function()
-        logger.info('Loaded model: {}'.format(self.model.name))
+        g = tf.Graph()
+        self.graph = g
+        with self.graph.as_default():
+            self.model = models.load_model(model_path)
+            logger.info('Loaded model: {}'.format(self.model.name))
         self._load_assets(path)
 
     def _load_assets(self, path):
@@ -75,19 +77,20 @@ class ModelWrapper(object):
             sentence = sentence.rjust(SEED_TEXT_LEN)
 
         generated = ''
-        for i in range(gen_chars):
-            x = np.zeros((1, SEED_TEXT_LEN, self.num_chars))
+        with self.graph.as_default():
+            for i in range(gen_chars):
+                x = np.zeros((1, SEED_TEXT_LEN, self.num_chars))
 
-            for t, char in enumerate(sentence):
-                x[0, t, self.char_indices[char]] = 1.
+                for t, char in enumerate(sentence):
+                    x[0, t, self.char_indices[char]] = 1.
 
-            preds = self.model.predict(x, verbose=0)[0]
+                preds = self.model.predict(x, verbose=0)[0]
 
-            next_index = self._sample(preds)
-            next_char = self.indices_char[str(next_index)]
+                next_index = self._sample(preds)
+                next_char = self.indices_char[str(next_index)]
 
-            generated += next_char
-            sentence = sentence[1:] + next_char
+                generated += next_char
+                sentence = sentence[1:] + next_char
 
         return generated
 
