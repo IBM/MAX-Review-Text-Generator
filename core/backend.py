@@ -20,8 +20,7 @@ class ModelWrapper(object):
         logger.info('Loading model from: {}...'.format(path))
         model_path = '{}/{}'.format(path, model_file)
         clear_session()
-        g = tf.Graph()
-        self.graph = g
+        self.graph = tf.Graph()
         with self.graph.as_default():
             self.model = models.load_model(model_path)
             logger.info('Loaded model: {}'.format(self.model.name))
