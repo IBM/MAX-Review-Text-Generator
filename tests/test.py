@@ -1,26 +1,19 @@
 import pytest
-import pycurl
-import io
-import json
+import requests
 
 
 def test_response():
     seed_text = "went there for dinner on a friday night and i have to say i'm impressed by the quality of the food "
     chars = 20
+    model_endpoint = 'http://localhost:5000/model/predict'
 
-    c = pycurl.Curl()
-    b = io.BytesIO()
-    c.setopt(pycurl.URL, 'http://localhost:5000/model/predict')
-    c.setopt(pycurl.HTTPHEADER, ['Accept:application/json', 'Content-Type: application/json'])
+    json_data = {"seed_text": seed_text, "chars": chars}
 
-    c.setopt(pycurl.POSTFIELDS, '{"seed_text": "' + seed_text + '", "chars": ' + str(chars) + '}')
-    c.setopt(pycurl.WRITEFUNCTION, b.write)
-    c.perform()
-    assert c.getinfo(pycurl.RESPONSE_CODE) == 200
-    c.close()
+    r = requests.post(url=model_endpoint, json=json_data)
 
-    response = b.getvalue()
-    response = json.loads(response)
+    assert r.status_code == 200
+
+    response = r.json()
 
     assert response['status'] == 'ok'
     assert response['prediction']['seed_text'] == seed_text
