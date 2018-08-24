@@ -1,2 +1,8 @@
 README.md
 Dockerfile
+.git/
+.idea/
+tests/
+.travis.yml
+.DS_Store
+.pytest_cache/
