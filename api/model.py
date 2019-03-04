@@ -1,6 +1,5 @@
 from flask_restplus import Namespace, Resource, fields
 from flask import request
-
 from config import MODEL_META_DATA, DEFAULT_CHARS
 from core.backend import ModelWrapper
 
@@ -13,12 +12,13 @@ model_meta = api.model('ModelMetadata', {
     'license': fields.String(required=False, description='Model license')
 })
 
+
 @api.route('/metadata')
 class Model(Resource):
     @api.doc('get_metadata')
     @api.marshal_with(model_meta)
     def get(self):
-        '''Return the metadata associated with the model'''
+        """Return the metadata associated with the model"""
         return MODEL_META_DATA
 
 
@@ -33,10 +33,6 @@ model_prediction = api.model('ModelPrediction', {
     'full_text': fields.String(required=False, description='Seed text followed by generated text')
 })
 
-predict_response = api.model('ModelPredictResponse', {
-    'status': fields.String(required=True, description='Response status message'),
-    'prediction': fields.Nested(model_prediction, description='Model prediction')
-})
 
 @api.route('/predict')
 class Predict(Resource):
@@ -45,9 +41,8 @@ class Predict(Resource):
 
     @api.doc('predict')
     @api.expect(model_input)
-    @api.marshal_with(predict_response)
     def post(self):
-        '''Make a prediction given input data'''
+        """Make a prediction given input data"""
         result = {'status': 'error'}
 
         j = request.get_json()
