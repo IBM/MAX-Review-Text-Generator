@@ -8,9 +8,9 @@ RESTPLUS_MASK_SWAGGER = False
 SWAGGER_UI_DOC_EXPANSION = 'none'
 
 # API metadata
-API_TITLE = 'Model Asset Exchange Server'
-API_DESC = 'An API for serving models'
-API_VERSION = '0.1'
+API_TITLE = 'MAX Review Text Generator'
+API_DESC = 'Generate English-language text similar to the text in the Yelp® review data set.'
+API_VERSION = '1.1.0'
 
 # default model
 MODEL_NAME = 'Generative Language Model'
@@ -30,6 +30,7 @@ MODEL_META_DATA = {
     'id': '{}-keras'.format(MODEL_NAME.lower().replace(' ', '-')),
     'name': '{} Keras'.format(MODEL_NAME),
     'description': '{} in Keras trained on Yelp reviews'.format(MODEL_NAME),
-    'type': 'language_modeling',
-    'license': '{}'.format(MODEL_LICENSE)
+    'type': 'Language Modeling',
+    'license': '{}'.format(MODEL_LICENSE),
+    'source': 'https://developer.ibm.com/exchanges/models/all/max-review-text-generator/'
 }
