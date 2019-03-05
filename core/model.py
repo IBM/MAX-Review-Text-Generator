@@ -1,3 +1,5 @@
+from maxfw.model import MAXModelWrapper
+
 from keras.backend import clear_session
 from keras import models
 import tensorflow as tf
@@ -7,14 +9,15 @@ import logging
 
 logger = logging.getLogger()
 
-from config import DEFAULT_MODEL_PATH, DEFAULT_MODEL_FILE, SEED_TEXT_LEN
+from config import DEFAULT_MODEL_PATH, DEFAULT_MODEL_FILE, SEED_TEXT_LEN, MODEL_META_DATA as model_meta
 
 # (Fixed) length of seed text that can serve as input to the generative model
 _SEED_TEXT_LEN = 256
 
-class ModelWrapper(object):
+class ModelWrapper(MAXModelWrapper):
 
-
+    MODEL_META_DATA = model_meta
+    
     """Model wrapper for Keras models"""
     def __init__(self, path=DEFAULT_MODEL_PATH, model_file=DEFAULT_MODEL_FILE):
         logger.info('Loading model from: {}...'.format(path))

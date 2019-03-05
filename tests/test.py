@@ -12,7 +12,7 @@ def test_swagger():
 
     json = r.json()
     assert 'swagger' in json
-    assert json.get('info') and json.get('info').get('title') == 'Model Asset Exchange Server'
+    assert json.get('info') and json.get('info').get('title') == 'MAX Review Text Generator'
 
 
 def test_metadata():
@@ -27,6 +27,8 @@ def test_metadata():
     assert metadata['name'] == 'Generative Language Model Keras'
     assert metadata['description'] == 'Generative Language Model in Keras trained on Yelp reviews'
     assert metadata['license'] == 'Apache2'
+    assert metadata['type'] == 'Language Modeling'
+    assert 'max-review-text-generator' in metadata['source']
 
 
 def test_predict():
