@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/IBM/MAX-Review-Text-Generator.svg?branch=master)](https://travis-ci.org/IBM/MAX-Review-Text-Generator) [![Website Status](https://img.shields.io/website/http/max-review-text-generator.max.us-south.containers.appdomain.cloud/swagger.json.svg?label=api+demo)](http://max-review-text-generator.max.us-south.containers.appdomain.cloud/)
+
 # IBM Code Model Asset Exchange: Char-RNN Generative Language Model on Yelp Reviews
 
 This repository contains code to instantiate and deploy a language generation model. The model generates English-language text similar to the text in the [Yelp® review data set](https://www.kaggle.com/c/yelp-recruiting/data). The model consists of a recurrent neural network with 2 LSTM layers that was trained on the Yelp® reviews data. The input to the model is a piece of text used to seed the generative model, and the output is a piece of generated text.
