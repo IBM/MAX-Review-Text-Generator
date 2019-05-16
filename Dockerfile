@@ -1,6 +1,6 @@
 FROM codait/max-base:v1.1.1
 
-ARG model_bucket=http://max-assets.s3-api.us-geo.objectstorage.softlayer.net/review-text-generator/1.0
+ARG model_bucket=https://max-assets.s3.us.cloud-object-storage.appdomain.cloud/review-text-generator/1.0
 ARG model_file=assets.tar.gz
 
 WORKDIR /workspace
