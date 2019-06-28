@@ -24,7 +24,7 @@ The model is based on the [IBM Code Pattern: Training a Deep Learning Language M
 | ------------- | --------  | -------- |
 | This repository | [Apache 2.0](https://www.apache.org/licenses/LICENSE-2.0) | [LICENSE](LICENSE) |
 | Model Weights | [Apache 2.0](https://www.apache.org/licenses/LICENSE-2.0) | [LICENSE](LICENSE) |
-| Test assets | Various | [Asset README](samples/README.md) |
+| Test assets | Various | [samples README](samples/README.md) |
 
 ## Pre-requisites:
 
