@@ -48,7 +48,7 @@ class ModelPredictAPI(PredictAPI):
         j = request.get_json()
         seed_text = j['seed_text']
         gen_chars = j['chars'] if 'chars' in j else DEFAULT_CHARS
-        generated_text = self.model_wrapper._predict(seed_text, gen_chars)
+        generated_text = self.model_wrapper.predict({'sentence': seed_text, 'gen_chars': gen_chars})
         full_text = seed_text + generated_text
         model_pred = {
             'seed_text': seed_text,

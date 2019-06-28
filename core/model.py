@@ -62,7 +62,13 @@ class ModelWrapper(MAXModelWrapper):
         probas = np.random.multinomial(1, preds, 1)
         return np.argmax(probas)
 
-    def _predict(self, sentence, gen_chars=50):
+    def _pre_process(self, args_dict):
+        return args_dict
+
+    def _post_process(self, args_dict):
+        return args_dict
+
+    def _predict(self, args_dict):
         '''
         Generate text based on seed text.
 
@@ -78,6 +84,8 @@ class ModelWrapper(MAXModelWrapper):
         # out of vocabulary.
         # To compensate, turn everything into lowercase, then check for
         # out-of-vocab characters in the result.
+        sentence, gen_chars = args_dict["sentence"], args_dict["gen_chars"]
+
         sentence = sentence.lower()
         for t, char in enumerate(sentence):
             if char not in self.char_indices:
