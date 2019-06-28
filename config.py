@@ -10,7 +10,7 @@ SWAGGER_UI_DOC_EXPANSION = 'none'
 # API metadata
 API_TITLE = 'MAX Review Text Generator'
 API_DESC = 'Generate English-language text similar to the text in the Yelp® review data set.'
-API_VERSION = '1.1.0'
+API_VERSION = '1.2.0'
 
 # default model
 MODEL_NAME = 'Generative Language Model'
