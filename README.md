@@ -1,10 +1,12 @@
 [![Build Status](https://travis-ci.org/IBM/MAX-Review-Text-Generator.svg?branch=master)](https://travis-ci.org/IBM/MAX-Review-Text-Generator) [![Website Status](https://img.shields.io/website/http/max-review-text-generator.max.us-south.containers.appdomain.cloud/swagger.json.svg?label=api+demo)](http://max-review-text-generator.max.us-south.containers.appdomain.cloud/)
 
+[<img src="docs/deploy-max-to-ibm-cloud-with-kubernetes-button.png" width="400px">](http://ibm.biz/max-to-ibm-cloud-tutorial)
+
 # IBM Code Model Asset Exchange: Char-RNN Generative Language Model on Yelp Reviews
 
 This repository contains code to instantiate and deploy a language generation model. The model generates English-language text similar to the text in the [Yelp® review data set](https://www.kaggle.com/c/yelp-recruiting/data). The model consists of a recurrent neural network with 2 LSTM layers that was trained on the Yelp® reviews data. The input to the model is a piece of text used to seed the generative model, and the output is a piece of generated text.
 
-The model is based on the [IBM Code Pattern: Training a Deep Learning Language Model Using Keras and Tensorflow](https://github.com/IBM/deep-learning-language-model). The model files are hosted on [IBM Cloud Object Storage](https://max-assets.s3.us.cloud-object-storage.appdomain.cloud/review-text-generator/1.0/assets.tar.gz). The code in this repository deploys the model as a web service in a Docker container. This repository was developed as part of the [IBM Code Model Asset Exchange](https://developer.ibm.com/code/exchanges/models/).
+The model is based on the [IBM Code Pattern: Training a Deep Learning Language Model Using Keras and Tensorflow](https://github.com/IBM/deep-learning-language-model). The model files are hosted on [IBM Cloud Object Storage](https://max-assets.s3.us.cloud-object-storage.appdomain.cloud/review-text-generator/1.0/assets.tar.gz). The code in this repository deploys the model as a web service in a Docker container. This repository was developed as part of the [IBM Code Model Asset Exchange](https://developer.ibm.com/code/exchanges/models/) and the public API is powered by [IBM Cloud](https://ibm.biz/Bdz2XM).
 
 ## Model Metadata
 | Domain | Application | Industry  | Framework | Training Data | Input Data Format |
@@ -22,7 +24,7 @@ The model is based on the [IBM Code Pattern: Training a Deep Learning Language M
 | ------------- | --------  | -------- |
 | This repository | [Apache 2.0](https://www.apache.org/licenses/LICENSE-2.0) | [LICENSE](LICENSE) |
 | Model Weights | [Apache 2.0](https://www.apache.org/licenses/LICENSE-2.0) | [LICENSE](LICENSE) |
-| Test assets | Various | [Asset README](assets/README.md) |
+| Test assets | Various | [Asset README](samples/README.md) |
 
 ## Pre-requisites:
 
@@ -57,6 +59,8 @@ $ kubectl apply -f https://raw.githubusercontent.com/IBM/MAX-Review-Text-Generat
 ```
 
 The model will be available internally at port `5000`, but can also be accessed externally through the `NodePort`.
+
+A more elaborate tutorial on how to deploy this MAX model to production on [IBM Cloud](https://ibm.biz/Bdz2XM) can be found [here](http://ibm.biz/max-to-ibm-cloud-tutorial).
 
 ## Run Locally
 
@@ -101,7 +105,7 @@ $ docker run -it -p 5000:5000 max-review-text-generator
 
 The API server automatically generates an interactive Swagger documentation page. Go to `http://localhost:5000` to load it. From there you can explore the API and also create test requests.
 
-Use the `model/predict` endpoint to post a snippet of text to seed the model (you can use one of the text snippets from the `assets` folder) and get generated text from the API. You can also specify the number of characters to generate in the `chars` field in the JSON request (`100` by default). The maximum length of an input text snippet is set at `256` characters, and the input you post will be truncated to that length before generating text.
+Use the `model/predict` endpoint to post a snippet of text to seed the model (you can use one of the text snippets from the `samples` folder) and get generated text from the API. You can also specify the number of characters to generate in the `chars` field in the JSON request (`100` by default). The maximum length of an input text snippet is set at `256` characters, and the input you post will be truncated to that length before generating text.
 
 *Note* the API call may take a while to complete as it takes some time for the model to generate the text.
 
