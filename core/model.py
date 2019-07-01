@@ -62,12 +62,6 @@ class ModelWrapper(MAXModelWrapper):
         probas = np.random.multinomial(1, preds, 1)
         return np.argmax(probas)
 
-    def _pre_process(self, args_dict):
-        return args_dict
-
-    def _post_process(self, args_dict):
-        return args_dict
-
     def _predict(self, args_dict):
         '''
         Generate text based on seed text.
