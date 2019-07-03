@@ -1,3 +1,19 @@
+#
+# Copyright 2018-2019 IBM Corp. All Rights Reserved.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+
 from core.model import ModelWrapper
 
 from maxfw.core import MAX_API, PredictAPI
@@ -32,7 +48,7 @@ class ModelPredictAPI(PredictAPI):
         j = request.get_json()
         seed_text = j['seed_text']
         gen_chars = j['chars'] if 'chars' in j else DEFAULT_CHARS
-        generated_text = self.model_wrapper.predict(seed_text, gen_chars)
+        generated_text = self.model_wrapper.predict({'sentence': seed_text, 'gen_chars': gen_chars})
         full_text = seed_text + generated_text
         model_pred = {
             'seed_text': seed_text,

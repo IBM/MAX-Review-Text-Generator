@@ -1,3 +1,19 @@
+#
+# Copyright 2018-2019 IBM Corp. All Rights Reserved.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+
 from maxfw.model import MAXModelWrapper
 
 from keras.backend import clear_session
@@ -46,7 +62,7 @@ class ModelWrapper(MAXModelWrapper):
         probas = np.random.multinomial(1, preds, 1)
         return np.argmax(probas)
 
-    def predict(self, sentence, gen_chars=50):
+    def _predict(self, args_dict):
         '''
         Generate text based on seed text.
 
@@ -62,6 +78,8 @@ class ModelWrapper(MAXModelWrapper):
         # out of vocabulary.
         # To compensate, turn everything into lowercase, then check for
         # out-of-vocab characters in the result.
+        sentence, gen_chars = args_dict["sentence"], args_dict["gen_chars"]
+
         sentence = sentence.lower()
         for t, char in enumerate(sentence):
             if char not in self.char_indices:
