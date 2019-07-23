@@ -22,18 +22,19 @@ import tensorflow as tf
 import numpy as np
 import json
 import logging
+from config import DEFAULT_MODEL_PATH, DEFAULT_MODEL_FILE, SEED_TEXT_LEN, MODEL_META_DATA as model_meta
 
 logger = logging.getLogger()
 
-from config import DEFAULT_MODEL_PATH, DEFAULT_MODEL_FILE, SEED_TEXT_LEN, MODEL_META_DATA as model_meta
 
 # (Fixed) length of seed text that can serve as input to the generative model
 _SEED_TEXT_LEN = 256
 
+
 class ModelWrapper(MAXModelWrapper):
 
     MODEL_META_DATA = model_meta
-    
+
     """Model wrapper for Keras models"""
     def __init__(self, path=DEFAULT_MODEL_PATH, model_file=DEFAULT_MODEL_FILE):
         logger.info('Loading model from: {}...'.format(path))
@@ -74,7 +75,7 @@ class ModelWrapper(MAXModelWrapper):
         '''
 
         # The model was trained on lowercase text only, and there is no
-        # provision in the model itself for handling characters that are 
+        # provision in the model itself for handling characters that are
         # out of vocabulary.
         # To compensate, turn everything into lowercase, then check for
         # out-of-vocab characters in the result.
@@ -113,4 +114,3 @@ class ModelWrapper(MAXModelWrapper):
                 sentence = sentence[1:] + next_char
 
         return generated
-
