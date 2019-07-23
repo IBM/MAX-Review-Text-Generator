@@ -18,9 +18,9 @@ from core.model import ModelWrapper
 
 from maxfw.core import MAX_API, PredictAPI
 
-from flask_restplus import Namespace, Resource, fields
+from flask_restplus import fields
 from flask import request
-from config import MODEL_META_DATA, DEFAULT_CHARS
+from config import DEFAULT_CHARS
 
 
 model_input = MAX_API.model('ModelInput', {
