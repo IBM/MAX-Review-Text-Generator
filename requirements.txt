@@ -1,4 +1,4 @@
 numpy==1.14.1
-tensorflow==1.12.2
+tensorflow==1.15.0
 h5py==2.8.0
 keras==2.1.5
