@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/IBM/MAX-Review-Text-Generator.svg?branch=master)](https://travis-ci.org/IBM/MAX-Review-Text-Generator) [![Website Status](https://img.shields.io/website/http/max-review-text-generator.max.us-south.containers.appdomain.cloud/swagger.json.svg?label=api+demo)](http://max-review-text-generator.max.us-south.containers.appdomain.cloud/)
+[![Build Status](https://travis-ci.org/IBM/MAX-Review-Text-Generator.svg?branch=master)](https://travis-ci.org/IBM/MAX-Review-Text-Generator) [![Website Status](https://img.shields.io/website/http/max-review-text-generator.codait-prod-41208c73af8fca213512856c7a09db52-0000.us-east.containers.appdomain.cloud/swagger.json.svg?label=api+demo)](http://max-review-text-generator.codait-prod-41208c73af8fca213512856c7a09db52-0000.us-east.containers.appdomain.cloud)
 
 [<img src="docs/deploy-max-to-ibm-cloud-with-kubernetes-button.png" width="400px">](http://ibm.biz/max-to-ibm-cloud-tutorial)
 
@@ -6,7 +6,7 @@
 
 This repository contains code to instantiate and deploy a language generation model. The model generates English-language text similar to the text in the [Yelp® review data set](https://www.kaggle.com/c/yelp-recruiting/data). The model consists of a recurrent neural network with 2 LSTM layers that was trained on the Yelp® reviews data. The input to the model is a piece of text used to seed the generative model, and the output is a piece of generated text.
 
-The model is based on the [IBM Code Pattern: Training a Deep Learning Language Model Using Keras and Tensorflow](https://github.com/IBM/deep-learning-language-model). The model files are hosted on [IBM Cloud Object Storage](https://s3.us-south.cloud-object-storage.appdomain.cloud/max-assets-prod/max-review-text-generator/1.0.0/assets.tar.gz). The code in this repository deploys the model as a web service in a Docker container. This repository was developed as part of the [IBM Code Model Asset Exchange](https://developer.ibm.com/code/exchanges/models/) and the public API is powered by [IBM Cloud](https://ibm.biz/Bdz2XM).
+The model is based on the [IBM Code Pattern: Training a Deep Learning Language Model Using Keras and Tensorflow](https://github.com/IBM/deep-learning-language-model). The model files are hosted on [IBM Cloud Object Storage](https://max-cdn.cdn.appdomain.cloud/max-review-text-generator/1.0.0/assets.tar.gz). The code in this repository deploys the model as a web service in a Docker container. This repository was developed as part of the [IBM Code Model Asset Exchange](https://developer.ibm.com/code/exchanges/models/) and the public API is powered by [IBM Cloud](https://ibm.biz/Bdz2XM).
 
 ## Model Metadata
 | Domain | Application | Industry  | Framework | Training Data | Input Data Format |
@@ -118,7 +118,7 @@ Use the `model/predict` endpoint to post a snippet of text to seed the model (yo
 
 You can also test it on the command line, for example:
 
-```
+```bash
 $ curl -X POST --header 'Content-Type: application/json' -d '{"seed_text": "heart be still i loved this place. way better than i expected. i had the spicy noodles and they were delicious, flavor great and quality was on point. for desert the sticky rice with mango, i dream about it now. highly recommend if you are in the mood for "}' 'http://localhost:5000/model/predict'
 ```
 
