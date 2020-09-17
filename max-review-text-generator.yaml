@@ -27,6 +27,6 @@ spec:
     spec:
       containers:
       - name: max-review-text-generator
-        image: codait/max-review-text-generator:latest
+        image: quay.io/codait/max-review-text-generator:latest
         ports:
         - containerPort: 5000
